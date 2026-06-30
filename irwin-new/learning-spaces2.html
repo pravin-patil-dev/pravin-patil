@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Spaces - Option 1 - Lady Irwin College</title>
+  <link rel="stylesheet" href="./globalcss.css">
+  <style>
+    /* 
+      ====================================
+      1. HORIZONTAL TABS (Top Level Navigation)
+      ====================================
+    */
+    .irwin-tabs-horizontal {
+      display: flex;
+      gap: 6px;
+      row-gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 2px solid rgba(116, 28, 2, 0.1);
+      padding-bottom: 0px;
+      margin-bottom: 24px;
+    }
+
+    .irwin-tab-item {
+      padding: 16px 28px;
+      font-family: var(--font-main, sans-serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--brand-maroon, #741C02);
+      background: rgba(116, 28, 2, 0.05);
+      border: 1px solid rgba(116, 28, 2, 0.1);
+      border-top: 4px solid transparent;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .irwin-tab-item:hover {
+      background: rgba(116, 28, 2, 0.15);
+    }
+
+    .irwin-tab-item.active {
+      color: var(--brand-white, #fff);
+      background: var(--brand-maroon, #741C02);
+      border-color: var(--brand-maroon, #741C02);
+      border-top: 4px solid var(--brand-alt, #DF672B);
+    }
+
+    .irwin-tab-content-panel {
+      display: none;
+      padding: 30px 0px;
+      background: transparent;
+      animation: fadeIn 0.3s ease;
+      line-height: 1.6;
+    }
+
+    .irwin-tab-content-panel.active {
+      display: block;
+    }
+
+    /* 
+      ====================================
+      2. VERTICAL TABS (For Photo Galleries)
+      ====================================
+    */
+    .irwin-vertical-gallery-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 0;
+      align-items: stretch;
+      margin-top: 30px;
+      background: #fff;
+      border: 1px solid rgba(116, 28, 2, 0.15);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .irwin-vertical-gallery-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .irwin-tabs-vertical {
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.03);
+      border-right: 1px solid rgba(116, 28, 2, 0.15);
+    }
+
+    .irwin-v-tab-item {
+      padding: 18px 24px;
+      font-family: var(--font-main, sans-serif);
+      font-size: 15px;
+      font-weight: 500;
+      color: #333;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      border-left: 4px solid transparent;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+
+    .irwin-v-tab-item:last-child {
+      border-bottom: none;
+    }
+
+    .irwin-v-tab-item:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .irwin-v-tab-item.active {
+      background-color: #fff;
+      color: var(--brand-maroon, #741C02);
+      border-left: 4px solid var(--brand-alt, #DF672B);
+      font-weight: 700;
+      box-shadow: -1px 0px 0px #fff;
+      /* covers exactly the border-right of parent */
+    }
+
+    /* Gallery Grid */
+    .irwin-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      padding: 24px;
+      background: #fff;
+    }
+
+    .irwin-gallery-item {
+      aspect-ratio: 16/10;
+      background: #f0f0f0;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .irwin-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .irwin-gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .irwin-gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      color: #fff;
+      padding: 16px 12px 10px 12px;
+      font-size: 13px;
+      font-family: var(--font-main);
+    }
+
+    /* Headings for Sections */
+    .irwin-section-heading {
+      font-size: var(--font-size-hd-Level2);
+      font-family: var(--font-display);
+      color: var(--brand-maroon);
+      margin-bottom: 20px;
+    }
+
+    .irwin-gallery-heading {
+      font-size: 20px;
+      font-family: var(--font-display);
+      color: #fff;
+      background: var(--brand-maroon);
+      padding: 16px 24px;
+      margin: 0;
+      border-radius: 8px 8px 0 0;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Table Utility Classes */
+    .lic-row-maroon {
+      background-color: var(--brand-maroon) !important;
+      color: white !important;
+    }
+
+    .lic-row-maroon th,
+    .lic-row-maroon td {
+      color: white !important;
+      font-weight: 700;
+    }
+
+    .lic-cell-category {
+      font-weight: 700;
+      color: var(--brand-maroon) !important;
+    }
+
+    .lic-cell-sub {
+      padding-left: 40px !important;
+      color: var(--p-font-color);
+    }
+
+    .lic-cell-val {
+      text-align: center;
+      color: var(--p-font-color);
+      font-weight: 600;
+      vertical-align: middle;
+    }
+
+    .lic-cell-total-label {
+      font-weight: 600;
+      color: var(--brand-maroon) !important;
+      padding-left: 40px !important;
+    }
+
+    .lic-cell-total-val {
+      font-weight: 700;
+      color: var(--brand-maroon) !important;
+      text-align: center;
+    }
+  </style>
+
+<body>
+
+  <!-- Header Area -->
+  <header class="page-header"
+    style="padding: 60px 20px; background-color: var(--brand-maroon); color: white; text-align: center; margin-bottom: 40px;">
+    <h1 style="font-family: var(--font-display); font-size: var(--font-size-hd-Level1); margin-bottom: 10px;">Learning
+      Spaces</h1>
+    <p class="body-paragraph text-lg max-w-[800px] mx-auto text-white/90">Premium infrastructure fostering academic
+      excellence and research capabilities.</p>
+  </header>
+
+  <!-- Main Content -->
+  <section class="section" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+
+    <!-- TOP LEVEL MAIN TABS -->
+    <div class="irwin-tabs-horizontal">
+      <button class="irwin-tab-item active" onclick="openTopTab('tab-overview')">Overview & Facilities</button>
+      <button class="irwin-tab-item" onclick="openTopTab('tab-classrooms')">Classrooms & Staff Rooms</button>
+      <button class="irwin-tab-item" onclick="openTopTab('tab-laboratories')">Laboratories</button>
+    </div>
+
+    <!-- TAB 1: OVERVIEW & FACILITIES -->
+    <div id="tab-overview" class="irwin-tab-content-panel active">
+      <!-- About Section -->
+      <div class="mb-10">
+        <p class="body-paragraph mb-4">Lady Irwin College is spread over 16.5 acres with red brick buildings amidst
+          sprawling lawns and trees in Lutyens Delhi. Built in 1932 by Sir Walter Sykes George, the buildings are
+          classified as heritage sites.</p>
+        <p class="body-paragraph">Concerted efforts are being taken towards making LIC a green campus for which green
+          building audit has been done which has indicated that the buildings on campus utilize plenty of daylight and
+          natural ventilation for comfort and efficiency of users. There are large numbers of trees and lawns which add
+          to improved quality of air and minimize air pollution on the campus. College has key plants that significantly
+          help in improving quality of air such as Areca Palm, Money plant, Aloe Vera, Dracaena, Rubber plant, baobao
+          tree, etc.</p>
+      </div>
+
+      <!-- Special Facilities -->
+      <h2 class="irwin-section-heading"
+        style="border-bottom: 2px solid var(--brand-maroon); padding-bottom: 10px; display: inline-block;">Special
+        Facilities</h2>
+      <ul class="irwin-directory" style="margin-top: 10px;">
+        <li class="irwin-directory-item" style="background:#fff;">
+          <div class="irwin-item-content">
+            <div class="irwin-directory-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                <path d="M9 22v-4h6v4"></path>
+                <path d="M8 6h.01"></path>
+                <path d="M16 6h.01"></path>
+                <path d="M12 6h.01"></path>
+                <path d="M12 10h.01"></path>
+                <path d="M12 14h.01"></path>
+                <path d="M16 10h.01"></path>
+                <path d="M16 14h.01"></path>
+                <path d="M8 10h.01"></path>
+                <path d="M8 14h.01"></path>
+              </svg>
+            </div>
+            <div class="irwin-directory-main">
+              <div class="irwin-directory-header">
+                <h3 class="irwin-directory-title">Rajkumari Amrit Kaur (RAK) Child Study Centre</h3>
+              </div>
+              <p class="irwin-directory-subtitle body-paragraph">A laboratory to conduct in-depth research on early
+                childhood care and development by the Department of Human Development and Childhood Studies. RAK
+                provides facilities such as observation labs, crèche, after-school care, play school, and early
+                intervention (speech therapy, occupational therapy).</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="irwin-directory-item" style="background:#fff;">
+          <div class="irwin-item-content">
+            <div class="irwin-directory-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+              </svg>
+            </div>
+            <div class="irwin-directory-main">
+              <div class="irwin-directory-header">
+                <h3 class="irwin-directory-title">The Library</h3>
+              </div>
+              <p class="irwin-directory-subtitle body-paragraph">Housed in a separate building equipped with the latest
+                ICT requirements. It is fully automated, boasting a large reading room (used for seminars for 100
+                persons), INTERNET workstations with 40 computers, one INTRANET server, and Fibre Optic connectivity.
+              </p>
+            </div>
+          </div>
+        </li>
+
+        <li class="irwin-directory-item" style="background:#fff;">
+          <div class="irwin-item-content">
+            <div class="irwin-directory-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="irwin-directory-main">
+              <div class="irwin-directory-header">
+                <h3 class="irwin-directory-title">Faculty Rooms</h3>
+              </div>
+              <p class="irwin-directory-subtitle body-paragraph">Shared by 2-4 faculty members, these spaces enable
+                effective student-teacher interaction on a personalized basis. Most faculty rooms are Wi-Fi enabled and
+                provided with appropriate furniture and storage facilities.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="irwin-directory-item" style="background:#fff;">
+          <div class="irwin-item-content">
+            <div class="irwin-directory-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                <line x1="6" y1="1" x2="6" y2="4"></line>
+                <line x1="10" y1="1" x2="10" y2="4"></line>
+                <line x1="14" y1="1" x2="14" y2="4"></line>
+              </svg>
+            </div>
+            <div class="irwin-directory-main">
+              <div class="irwin-directory-header">
+                <h3 class="irwin-directory-title">Student & Faculty Support Facilities</h3>
+              </div>
+              <p class="irwin-directory-subtitle body-paragraph">Includes students’ meeting spaces i.e., Ashiana, hostel
+                common room, college lawns, and amphitheatre, where students meet for students’ union meetings, GBM,
+                etc. The college bookshop provides stationery items along with textbooks.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+
+    <!-- TAB 2: CLASSROOMS & STAFF ROOMS -->
+    <div id="tab-classrooms" class="irwin-tab-content-panel">
+      <h2 class="irwin-section-heading">Classrooms</h2>
+      <p class="body-paragraph mb-5">Classrooms of different capacities meet requirements of UG, PG and Ph.D. students.
+        Big classrooms are available for 80-100 UG students. For optional courses and DSE (Hons.), class size is about
+        20 students. Each classroom is equipped with appropriate, comfortable furniture; good ventilation and adequate
+        light. Most classrooms are equipped with LCD projectors and Wi-Fi. Most departments have a seminar room.</p>
+
+      <div class="lic-data-table mb-12">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th class="col-center w-[140px]">Classrooms</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="lic-cell-category" colspan="2">UG Teaching</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="lic-cell-sub font-semibold text-[#111]">Main Classrooms</td>
+              <td class="lic-text-center font-semibold text-[#111]">Total No.</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub text-sm py-3">(I DR, II DR, I HCR, II HCR, CR I, CR II, B.Ed., Porta I A, Porta II
+                A, Food Technology, Porta I B, Porta II B, Tutorial rooms)</td>
+              <td class="lic-cell-val">10</td>
+            </tr>
+
+            <tr>
+              <td class="lic-cell-category">PG Classrooms</td>
+              <td class="lic-text-center font-bold text-[#741c02] text-lg">27</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">F & N</td>
+              <td class="lic-cell-val">8</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">HDCS</td>
+              <td class="lic-cell-val">4</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">RMDA</td>
+              <td class="lic-cell-val">4</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">DCE</td>
+              <td class="lic-cell-val">4</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">FAS</td>
+              <td class="lic-cell-val">2</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">B.Ed. (Near Library)</td>
+              <td class="lic-cell-val">4</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Science</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+
+            <tr class="lic-row-subtle">
+              <td class="lic-text-center py-4"><strong>Total no. of classrooms</strong></td>
+              <td class="lic-text-center text-lg"><strong>37</strong></td>
+            </tr>
+            <tr class="border-t border-gray-200">
+              <td class="lic-text-center py-4">
+                <strong>Total no. of Seminar Rooms:</strong><br>
+                <span class="text-sm mt-1 inline-block">(RMDA, HDCS, DCE, B.Ed., FN, Library, B.Ed., Seth Ram Lal
+                  Hall)</span>
+              </td>
+              <td class="lic-text-center text-lg align-middle"><strong>8</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Vertical Tab Photo Gallery Component -->
+      <div class="shadow-[0_10px_30px_rgba(0,0,0,0.08)] rounded-lg">
+        <h3 class="irwin-gallery-heading">Classrooms & Staff Rooms Photos</h3>
+        <div class="irwin-vertical-gallery-layout">
+          <!-- Vertical Nav -->
+          <div class="irwin-tabs-vertical" id="classrooms-gallery-nav">
+            <button class="irwin-v-tab-item active" onclick="openGalleryTab(this, 'c-gallery-tab1')">Classrooms</button>
+            <button class="irwin-v-tab-item" onclick="openGalleryTab(this, 'c-gallery-tab2')">Staff Rooms</button>
+            <button class="irwin-v-tab-item" onclick="openGalleryTab(this, 'c-gallery-tab3')">ICT Infrastructure
+              2017</button>
+          </div>
+
+          <!-- Gallery Content -->
+          <div class="irwin-gallery-content">
+            <div id="c-gallery-tab1" style="display:block;">
+              <div class="irwin-gallery-grid">
+                <div class="irwin-gallery-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=500&q=80"
+                    alt="Classroom">
+                  <div class="irwin-gallery-caption">Main Building, Hall A</div>
+                </div>
+                <div class="irwin-gallery-item">
+                  <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=500&q=80"
+                    alt="Classroom">
+                  <div class="irwin-gallery-caption">PG Classroom</div>
+                </div>
+                <!-- Placeholders for more images -->
+              </div>
+            </div>
+
+            <div id="c-gallery-tab2" style="display:none;">
+              <div class="irwin-gallery-grid">
+                <div class="irwin-gallery-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1497215842817-21a141b711e5?auto=format&fit=crop&w=500&q=80"
+                    alt="Staff Room">
+                  <div class="irwin-gallery-caption">Faculty Room 1</div>
+                </div>
+              </div>
+            </div>
+
+            <div id="c-gallery-tab3" style="display:none;">
+              <div class="irwin-gallery-grid">
+                <div class="irwin-gallery-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=500&q=80"
+                    alt="ICT Infrastructure">
+                  <div class="irwin-gallery-caption">Projector Setup 2017</div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Gallery Content -->
+        </div>
+      </div>
+    </div>
+
+
+    <!-- TAB 3: LABORATORIES -->
+    <div id="tab-laboratories" class="irwin-tab-content-panel">
+      <h2 class="irwin-section-heading">Laboratories & ICT Base Facilities</h2>
+      <p class="body-paragraph mb-5">The academic programme of the college is enriched by laboratory experience. To
+        engage students to a variety of practical orientation, self-instructional, learner friendly modes, there are
+        well-equipped hi-tech laboratories. The Computer Resource Centre acts as a nodal centre to support all digital
+        needs of the college. Hands-on experiential learning is provided through the horticultural experimental farm for
+        research and innovation in farming.</p>
+
+      <div class="lic-data-table mb-12 overflow-x-auto">
+        <table class="w-full lic-text-left border-collapse min-w-[600px]">
+          <thead class="bg-[#f0eceb] border-b-2 border-[#d6cfc4]">
+            <tr>
+              <th class="lic-text-left px-4 py-4 uppercase tracking-wider text-sm font-bold text-[#741c02]">Department &
+                Laboratories</th>
+              <th
+                class="lic-text-center px-4 py-4 uppercase tracking-wider text-sm font-bold text-[#741c02] w-40 whitespace-nowrap">
+                No. of Labs</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <!-- A -->
+            <tr>
+              <td class="lic-cell-category pt-6" colspan="2"><strong>(a) Food and Nutrition Department</strong></td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Food & Nutrition Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Sushma Kashyap Culinary Science Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Nutritional Biochemistry Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Saroja Nutrition Studio</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Food Microbiology and Food Safety Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Food Processing & Technology Institutional Food Management Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Food Science and Quality Control Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub border-b border-gray-200">Food Product Development Lab</td>
+              <td class="lic-cell-val border-b border-gray-200">1</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="lic-text-right pr-6 py-2 text-[#111] text-sm"><strong>Total no. of labs</strong></td>
+              <td class="lic-text-center font-bold text-[#741c02] py-2">8</td>
+            </tr>
+
+            <!-- B -->
+            <tr>
+              <td class="lic-cell-category pt-6" colspan="2"><strong>(b) Resource Management & Design Application Dept.
+                  (RMDA)</strong></td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Resource Management labs I</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Resource Management labs II</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">RM Lab III</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub border-b border-gray-200">M.Sc. RMDA Lab</td>
+              <td class="lic-cell-val border-b border-gray-200">1</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="lic-text-right pr-6 py-2 text-[#111] text-sm"><strong>Total no. of labs</strong></td>
+              <td class="lic-text-center font-bold text-[#741c02] py-2">4</td>
+            </tr>
+
+            <!-- C -->
+            <tr>
+              <td class="lic-cell-category pt-6" colspan="2"><strong>(c) Human Development and Childhood Studies
+                  Dept.</strong></td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">M.Sc. HDCS Lab.</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub border-b border-gray-200">HDCS Lab (Ground Floor)</td>
+              <td class="lic-cell-val border-b border-gray-200">1</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="lic-text-right pr-6 py-2 text-[#111] text-sm"><strong>Total no. of labs</strong></td>
+              <td class="lic-text-center font-bold text-[#741c02] py-2">2</td>
+            </tr>
+
+            <!-- D -->
+            <tr>
+              <td class="lic-cell-category pt-6" colspan="2"><strong>(d) Fabric & Apparel Science Dept.</strong></td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Apparel Construction Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Fashion Design Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Dyeing & Printing Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Fabric Science Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Apparel & Textile Design Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub border-b border-gray-200">M.Sc. Studio</td>
+              <td class="lic-cell-val border-b border-gray-200">1</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="lic-text-right pr-6 py-2 text-[#111] text-sm"><strong>Total no. of labs</strong></td>
+              <td class="lic-text-center font-bold text-[#741c02] py-2">6</td>
+            </tr>
+
+            <!-- E -->
+            <tr>
+              <td class="lic-cell-category pt-6" colspan="2"><strong>(e) Development Communication & Extension
+                  Dept.</strong></td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Oral & Visual Communication Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Communication lab I</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Communication Ext. lab II</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub border-b border-gray-200">Broadcast & New Media Lab</td>
+              <td class="lic-cell-val border-b border-gray-200">1</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="lic-text-right pr-6 py-2 text-[#111] text-sm"><strong>Total no. of labs</strong></td>
+              <td class="lic-text-center font-bold text-[#741c02] py-2">4</td>
+            </tr>
+
+            <!-- F -->
+            <tr>
+              <td class="lic-cell-category pt-6" colspan="2"><strong>(f) Department of Education</strong></td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub border-b border-gray-200">Department of Education Resource Room</td>
+              <td class="lic-cell-val border-b border-gray-200">1</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="lic-text-right pr-6 py-2 text-[#111] text-sm"><strong>Total no. of labs</strong></td>
+              <td class="lic-text-center font-bold text-[#741c02] py-2">1</td>
+            </tr>
+
+            <!-- G -->
+            <tr>
+              <td class="lic-cell-category pt-6" colspan="2"><strong>(g) Science Labs</strong></td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Botany Lab (garden)</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Chemistry Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">Zoology Lab</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub border-b border-gray-200">Physics Lab</td>
+              <td class="lic-cell-val border-b border-gray-200">1</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="lic-text-right pr-6 py-2 text-[#111] text-sm"><strong>Total no. of labs</strong></td>
+              <td class="lic-text-center font-bold text-[#741c02] py-2">4</td>
+            </tr>
+
+            <!-- H -->
+            <tr>
+              <td class="lic-cell-category pt-6" colspan="2"><strong>(h) CRC Labs</strong></td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">CRC Labs I</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub">CRC Labs II</td>
+              <td class="lic-cell-val">1</td>
+            </tr>
+            <tr>
+              <td class="lic-cell-sub border-b border-gray-200">CRC Labs III</td>
+              <td class="lic-cell-val border-b border-gray-200">1</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="lic-text-right pr-6 py-2 text-[#111] text-sm"><strong>Total CRC labs</strong></td>
+              <td class="lic-text-center font-bold text-[#741c02] py-2">3</td>
+            </tr>
+
+            <!-- Grand Totals -->
+            <tr class="lic-row-subtle mt-4">
+              <td class="lic-text-left px-4 py-5 text-lg"><strong>Grand Total (Labs in College)</strong></td>
+              <td class="lic-text-center text-xl"><strong>32</strong></td>
+            </tr>
+            <tr class="bg-gray-50 border-t border-gray-200">
+              <td class="lic-text-left px-4 py-3 font-semibold text-[#111]">Total No. of Laboratories with ICT facility
+              </td>
+              <td class="lic-text-center font-bold text-lg">16</td>
+            </tr>
+            <tr class="bg-white border-t border-gray-200">
+              <td class="lic-text-left px-4 py-3 font-semibold text-[#111]">Total No. of Portable Projectors</td>
+              <td class="lic-text-center font-bold text-lg">4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Vertical Tab Photo Gallery Component -->
+      <div style="box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-radius: 8px;">
+        <h3 class="irwin-gallery-heading">Labs Photos</h3>
+        <div class="irwin-vertical-gallery-layout">
+          <!-- Vertical Nav -->
+          <div class="irwin-tabs-vertical" id="labs-gallery-nav">
+            <button class="irwin-v-tab-item active" onclick="openGalleryTab(this, 'l-gallery-tab1')">F & N</button>
+            <button class="irwin-v-tab-item" onclick="openGalleryTab(this, 'l-gallery-tab2')">HDCS</button>
+            <button class="irwin-v-tab-item" onclick="openGalleryTab(this, 'l-gallery-tab3')">FAS</button>
+            <button class="irwin-v-tab-item" onclick="openGalleryTab(this, 'l-gallery-tab4')">DCE</button>
+            <button class="irwin-v-tab-item" onclick="openGalleryTab(this, 'l-gallery-tab5')">RMDA</button>
+          </div>
+
+          <!-- Gallery Content -->
+          <div class="irwin-gallery-content">
+            <div id="l-gallery-tab1" style="display:block;">
+              <div class="irwin-gallery-grid">
+                <div class="irwin-gallery-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=500&q=80"
+                    alt="F&N Lab">
+                  <div class="irwin-gallery-caption">Microbiology Lab</div>
+                </div>
+                <div class="irwin-gallery-item">
+                  <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=500&q=80"
+                    alt="F&N Food Lab">
+                  <div class="irwin-gallery-caption">Cooking Lab</div>
+                </div>
+              </div>
+            </div>
+
+            <div id="l-gallery-tab2" style="display:none;">
+              <div class="irwin-gallery-grid" style="padding: 40px; text-align: center; color: #888;">Photos for HDCS
+                will appear here</div>
+            </div>
+            <div id="l-gallery-tab3" style="display:none;">
+              <div class="irwin-gallery-grid" style="padding: 40px; text-align: center; color: #888;">Photos for FAS
+                will appear here</div>
+            </div>
+            <div id="l-gallery-tab4" style="display:none;">
+              <div class="irwin-gallery-grid" style="padding: 40px; text-align: center; color: #888;">Photos for DCE
+                will appear here</div>
+            </div>
+            <div id="l-gallery-tab5" style="display:none;">
+              <div class="irwin-gallery-grid" style="padding: 40px; text-align: center; color: #888;">Photos for RMDA
+                will appear here</div>
+            </div>
+
+          </div> <!-- End Gallery Content -->
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- JavaScript for Tabs -->
+  <script>
+    // Handles the Main Top-Level Tabs
+    function openTopTab(tabId) {
+      // 1. Hide all panels
+      document.querySelectorAll('.irwin-tab-content-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      // 2. Remove active class from buttons
+      document.querySelectorAll('.irwin-tabs-horizontal .irwin-tab-item').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      // 3. Show target panel and set active state
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // Handles the Vertical Gallery Tabs
+    function openGalleryTab(buttonElement, targetTabId) {
+      // Find the parent layout container
+      const container = buttonElement.closest('.irwin-vertical-gallery-layout');
+
+      // Update buttons
+      const navButtons = container.querySelectorAll('.irwin-v-tab-item');
+      navButtons.forEach(btn => btn.classList.remove('active'));
+      buttonElement.classList.add('active');
+
+      // Update content panes
+      const contentPanes = container.querySelectorAll('.irwin-gallery-content > div');
+      contentPanes.forEach(pane => pane.style.display = 'none');
+      document.getElementById(targetTabId).style.display = 'block';
+    }
+  </script>
+</body>
+
+</html>

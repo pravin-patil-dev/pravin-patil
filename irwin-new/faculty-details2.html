@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generic UI Components - Lady Irwin</title>
+  <link rel="stylesheet" href="./globalcss.css">
+  <style>
+    body {
+      background-color: var(--bg-inner, #f8f9fa);
+      padding: 40px;
+      font-family: var(--font-main, sans-serif);
+      color: #333;
+    }
+    
+    .section-divider {
+      margin: 80px 0;
+      border-top: 2px dashed #ddd;
+    }
+
+    .section-title {
+      font-family: var(--font-display, serif);
+      font-size: 24px;
+      color: var(--brand-maroon, #741C02);
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* 
+      ====================================
+      1. HORIZONTAL TABS (.irwin-tabs-horizontal)
+      ====================================
+    */
+    .irwin-tabs-horizontal {
+      display: flex;
+      gap: 6px; /* Elegant, small gap for visual separation */
+      row-gap: 8px; /* Slight push if they wrap */
+      flex-wrap: wrap;
+      border-bottom: 3px solid var(--brand-maroon, #741C02);
+      padding-bottom: 0px;
+      margin-bottom: 24px;
+    }
+    
+    .irwin-tab-item {
+      padding: 12px 20px; /* Slightly tighter padding to fit the single row */
+      font-family: var(--font-main, sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--brand-maroon, #741C02);
+      background: rgba(116, 28, 2, 0.05); /* Faint maroon wash */
+      border: 1px solid rgba(116, 28, 2, 0.1);
+      border-top: 4px solid transparent; /* Reserves space to prevent height jumping */
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap; /* Forces text to stay linear */
+    }
+    
+    .irwin-tab-item:hover {
+      background: rgba(116, 28, 2, 0.15);
+    }
+    
+    .irwin-tab-item.active {
+      color: var(--brand-white, #fff);
+      background: var(--brand-maroon, #741C02);
+      border-color: var(--brand-maroon, #741C02);
+      border-top: 4px solid var(--brand-alt, #DF672B);
+    }
+
+    .irwin-tab-content-panel {
+      display: none;
+      padding: 32px 40px;
+      background: #fff;
+      border: 1px solid rgba(116, 28, 2, 0.1);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      animation: fadeIn 0.3s ease;
+      line-height: 1.6;
+    }
+    
+    .irwin-tab-content-panel.active {
+      display: block;
+    }
+
+    /* Automatically elevate the typography of panel headings */
+    .irwin-tab-content-panel h3 {
+      font-family: var(--font-display, serif);
+      font-size: 22px;
+      color: var(--brand-maroon, #741C02);
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(116, 28, 2, 0.1);
+      padding-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    /* 
+      ====================================
+      8. FACULTY CARDS (.irwin-faculty-grid)
+      ====================================
+    */
+    .irwin-faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    
+    .irwin-faculty-card {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid rgba(116, 28, 2, 0.1);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+    
+    .irwin-faculty-card:hover {
+      box-shadow: 0 6px 20px rgba(116, 28, 2, 0.08);
+      border-color: rgba(116, 28, 2, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .irwin-faculty-photo {
+      width: 70px;
+      height: 70px;
+      min-width: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 16px;
+      background: rgba(116, 28, 2, 0.05);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px rgba(116, 28, 2, 0.1);
+    }
+    
+    .irwin-faculty-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .irwin-faculty-name {
+      font-family: var(--font-main, sans-serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--brand-maroon, #741C02);
+      margin-bottom: 2px;
+      line-height: 1.2;
+    }
+    
+    .irwin-faculty-designation {
+      font-family: var(--font-main, sans-serif);
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    
+    .irwin-faculty-link {
+      font-family: var(--font-main, sans-serif);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand-alt, #DF672B);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .irwin-faculty-link:hover {
+      color: var(--brand-maroon, #741C02);
+      text-decoration: underline;
+    }
+
+    /* 
+      ====================================
+      2. VERTICAL TABS (.irwin-tabs-vertical-layout)
+      ====================================
+    */
+    .irwin-vertical-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    
+    @media (max-width: 768px) {
+      .irwin-vertical-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .irwin-tabs-vertical {
+      display: flex;
+      flex-direction: column;
+      background: var(--brand-maroon, #741C02); /* Heavy color grounding */
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(116, 28, 2, 0.15);
+    }
+    
+    .irwin-v-tab-item {
+      padding: 16px 20px;
+      font-family: var(--font-main, sans-serif);
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      background: transparent;
+      border: none;
+      border-left: 4px solid transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .irwin-v-tab-item:last-child {
+      border-bottom: none;
+    }
+    
+    .irwin-v-tab-item:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    
+    .irwin-v-tab-item.active {
+      background-color: #fff;
+      color: var(--brand-maroon, #741C02);
+      border-left: 4px solid var(--brand-alt, #DF672B);
+      font-weight: 600;
+    }
+
+    .irwin-v-tab-item.active::after {
+      content: "›"; 
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    /* 
+      ====================================
+      3. CLEAN MODERN TABLE (.irwin-data-table)
+      ====================================
+    */
+    .irwin-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #eaeaea;
+      margin-bottom: 24px;
+    }
+
+    .irwin-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-main, sans-serif);
+      text-align: left;
+    }
+    
+    .irwin-data-table th, 
+    .irwin-data-table td {
+      padding: 10px 16px;
+      line-height: 1.5;
+    }
+
+    .irwin-data-table th:first-child,
+    .irwin-data-table td:first-child {
+      text-align: right;
+      padding-left: 12px;
+      padding-right: 16px;
+      width: 65px; 
+      min-width: 65px; 
+      white-space: nowrap;
+    }
+    
+    .irwin-data-table th {
+      background-color: rgba(116, 28, 2, 0.05); /* Faint maroon */
+      color: var(--brand-maroon, #741C02);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid rgba(116, 28, 2, 0.2);
+    }
+    
+    .irwin-data-table tr {
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.2s ease;
+    }
+    
+    .irwin-data-table tr:last-child {
+      border-bottom: none; 
+    }
+    
+    .irwin-data-table tbody tr:nth-child(even) {
+      background-color: rgba(0,0,0,0.015);
+    }
+    
+    .irwin-data-table tbody tr:hover {
+      background-color: rgba(116, 28, 2, 0.02);
+    }
+    
+    .irwin-data-table td {
+      font-size: 15px;
+      color: #444;
+    }
+
+    /* 
+      ====================================
+      4. ACCORDIONS (.irwin-accordion)
+      ====================================
+    */
+    .irwin-accordion-container {
+      max-width: 900px;
+    }
+
+    .irwin-accordion {
+      margin-bottom: 16px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(116, 28, 2, 0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .irwin-accordion-header {
+      width: 100%;
+      text-align: left;
+      padding: 18px 24px;
+      background: var(--brand-maroon, #741C02);
+      color: #fff;
+      font-family: var(--font-display, serif);
+      font-size: 1.125rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s ease;
+    }
+
+    .irwin-accordion-header:hover {
+      background: var(--brand-alt, #DF672B); /* Orange pop on hover */
+    }
+
+    .irwin-accordion-icon {
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .irwin-accordion.expanded .irwin-accordion-icon {
+      transform: rotate(45deg); /* Turns + into x */
+    }
+
+    .irwin-accordion-body {
+      display: none;
+      padding: 24px;
+      background: #fff;
+      border-top: 1px solid rgba(116, 28, 2, 0.1);
+    }
+
+    .irwin-accordion.expanded .irwin-accordion-body {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 
+      ====================================
+      5. BRANDED LISTS (.irwin-list-styled)
+      ====================================
+    */
+    .irwin-list-styled {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 16px;
+    }
+    
+    .irwin-list-styled li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 10px;
+      color: #444;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    
+    .irwin-list-styled li::before {
+      content: ""; 
+      position: absolute;
+      left: 0;
+      top: 4px; 
+      width: 14px;
+      height: 14px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23741C02' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    /* 
+      ====================================
+      6. BRANDED LINKS (.irwin-link)
+      ====================================
+    */
+    .irwin-link {
+      color: var(--brand-alt, #DF672B);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(223, 103, 43, 0.4); /* Faint visual anchor by default */
+      transition: all 0.2s ease;
+    }
+    
+    .irwin-link:hover {
+      color: var(--brand-maroon, #741C02);
+      text-decoration-color: var(--brand-maroon, #741C02);
+    }    /* 
+      ====================================
+      9. PREMIUM FACULTY PROFILE OVERLAP
+      ====================================
+    */
+    .irwin-premium-profile {
+      display: flex;
+      gap: 20px;
+      margin-top: 12px;
+      position: relative;
+      z-index: 10;
+      padding: 0 40px 24px 40px;
+      margin-bottom: 24px;
+      border-bottom: 1px dashed rgba(116, 28, 2, 0.15); /* Elegant separator */
+    }
+    
+    .irwin-hero-avatar {
+      width: 100px;
+      height: 100px;
+      min-width: 100px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      box-shadow: 0 8px 20px rgba(116, 28, 2, 0.1);
+      object-fit: cover;
+      background: #fff;
+    }
+    
+    .irwin-hero-info {
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    
+    .irwin-hero-name {
+      font-family: var(--font-display, serif);
+      font-size: 30px;
+      color: #222;
+      margin: 0 0 4px 0;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+    
+    .irwin-hero-designation {
+      font-family: var(--font-main, sans-serif);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--brand-alt, #DF672B);
+      margin: 0 0 12px 0;
+    }
+
+    .irwin-contact-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .irwin-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #f8f9fa;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .irwin-badge strong {
+      color: var(--brand-maroon, #741C02);
+      margin-right: 6px;
+    }
+
+    .irwin-hero-back {
+      display: inline-flex;
+      margin: 30px 0 0 40px;
+      color: var(--brand-maroon, #741C02);
+      background: rgba(116, 28, 2, 0.05);
+      border: 1px solid rgba(116, 28, 2, 0.1);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .irwin-hero-back:hover {
+      background: var(--brand-maroon, #741C02);
+      color: #fff;
+      transform: translateX(-4px);
+      box-shadow: 0 4px 12px rgba(116, 28, 2, 0.15);
+    }
+
+    @media (max-width: 768px) {
+      .irwin-premium-profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .irwin-hero-info {
+         padding-top: 10px;
+         align-items: center;
+      }
+      .irwin-contact-badges {
+         justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; background: #e8e6e1;"> <!-- Simulating the off-white site background -->
+
+  <!-- ==============================================
+       1. FAKE CMS HEADER & BANNER (For Visual Context)
+       ============================================== -->
+  <header style="background: var(--brand-maroon, #741C02); color: #fff; padding: 20px 5%; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center;">
+      <div style="width: 60px; height: 60px; background: #fff; border-radius: 50%; margin-right: 20px; display: flex; align-items: center; justify-content: center; color: var(--brand-maroon); font-size: 10px; font-weight: bold; text-align: center;">LOGO</div>
+      <div>
+        <h1 style="font-family: var(--font-display, serif); margin: 0; font-size: 24px; font-weight: 500;">Lady Irwin College, Delhi</h1>
+        <p style="font-family: var(--font-main, sans-serif); margin: 4px 0 0 0; font-size: 12px; color: rgba(255,255,255,0.8);">University of Delhi | NAAC Accreditation A+</p>
+      </div>
+    </div>
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: 1px;">TIME TABLE &nbsp;&nbsp; FEEDBACK &nbsp;&nbsp; GALLERY</div>
+  </header>
+
+  <!-- Global Breadcrumb Banner Configuration -->
+  <div style="background-image: linear-gradient(rgba(116, 28, 2, 0.85), rgba(116, 28, 2, 0.95)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'); background-repeat: no-repeat; background-position: center center; background-size: cover; padding: 40px 5%; color: #fff; border-bottom: 5px solid var(--brand-alt, #DF672B);">
+    <h1 style="font-family: var(--font-display, serif); font-size: 38px; margin: 0; font-weight: 500; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Faculty Details</h1>
+    <p style="font-family: var(--font-main, sans-serif); margin: 6px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.9);">Home > Faculty Directory > <span style="color: var(--brand-alt, #DF672B);">Dr. Bindu</span></p>
+  </div>
+
+  <!-- The Actual CMS Content Area Background -->
+  <div style="padding: 60px 5%; min-height: 500px;">
+
+    <!-- PAGE CONTAINER MOCK -->
+    <div style="max-width: 1100px; margin: 0 auto; background: #fff; box-shadow: 0 0 30px rgba(0,0,0,0.05); border-radius: 8px; padding-bottom: 60px;">
+    
+    <!-- Back Navigation -->
+    <a href="#" class="irwin-hero-back">‹ Back to Faculty List</a>
+
+    <!-- Overlapping Profile -->
+    <div class="irwin-premium-profile">
+      <img src="https://randomuser.me/api/portraits/women/53.jpg" class="irwin-hero-avatar" alt="Dr. Bindu">
+      
+      <div class="irwin-hero-info">
+        <h1 class="irwin-hero-name">Dr. Bindu</h1>
+        <h2 class="irwin-hero-designation">Professor, Lady Irwin College</h2>
+        
+        <div class="irwin-contact-badges">
+          <div class="irwin-badge"><strong>Email:</strong> dr.bindu@lic.du.ac.in</div>
+          <div class="irwin-badge"><strong>Phone:</strong> Ext. 402</div>
+          <div class="irwin-badge"><strong>Qual:</strong> Ph.D.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div style="padding: 0 40px;"> <!-- Content wrapper to maintain margins -->
+
+      <!-- HORIZONTAL Tabs for lower profile weight -->
+      <div class="irwin-tabs-horizontal" style="margin-bottom: 30px;">
+        <button class="irwin-tab-item active" onclick="openHTab('fac-tab1')">Achievements</button>
+        <button class="irwin-tab-item" onclick="openHTab('fac-tab2')">Area of Research</button>
+        <button class="irwin-tab-item" onclick="openHTab('fac-tab3')">Experience</button>
+        <button class="irwin-tab-item" onclick="openHTab('fac-tab4')">Conference Talks</button>
+        <button class="irwin-tab-item" onclick="openHTab('fac-tab5')">Research Guidance</button>
+        <button class="irwin-tab-item" onclick="openHTab('fac-tab6')">Research Papers</button>
+        <button class="irwin-tab-item" onclick="openHTab('fac-tab7')">Research Projects</button>
+      </div>
+      
+      <!-- Tab Panels -->
+      <div id="fac-tab1" class="irwin-tab-content-panel active" style="box-shadow: none; border: none; padding: 0;">
+        <h3 style="margin-bottom: 12px; border:none;">Career Achievements</h3>
+        <p style="color: #666;">Not Added Yet</p>
+      </div>
+
+      <div id="fac-tab2" class="irwin-tab-content-panel" style="box-shadow: none; border: none; padding: 0;">
+        <h3 style="margin-bottom: 12px; border:none;">Core Area of Research</h3>
+        <ul class="irwin-list-styled">
+          <li>Community Nutrition and Public Health Initiatives</li>
+          <li>Adolescent Health and Dietary Interventions</li>
+          <li>Development of Iron-Fortified Supplemental Foods</li>
+        </ul>
+      </div>
+      
+      <div id="fac-tab3" class="irwin-tab-content-panel" style="box-shadow: none; border: none; padding: 0;">
+        <h3 style="margin-bottom: 12px; border:none;">Academic Experience</h3>
+        <div class="irwin-table-wrapper" style="margin-top: 16px;">
+          <table class="irwin-data-table">
+            <thead>
+              <tr>
+                <th>Sr. No</th>
+                <th>Institution / Organization</th>
+                <th>Role / Designation</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><strong>Lady Irwin College, DU</strong></td>
+                <td>Professor</td>
+                <td>2018 - Present</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><strong>Institute of Home Economics</strong></td>
+                <td>Associate Professor</td>
+                <td>2010 - 2018</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div id="fac-tab4" class="irwin-tab-content-panel" style="box-shadow: none; border: none; padding: 0;">
+        <h3 style="margin-bottom: 12px; border:none;">Invited Talks and Presentations</h3>
+        <ul class="irwin-list-styled">
+          <li>Keynote Speaker, <em>International Summit on Maternal Diet</em> (Geneva, 2023)</li>
+          <li>Panelist, <em>National Nutrition Framework Guidelines</em> (New Delhi, 2022)</li>
+        </ul>
+      </div>
+
+      <div id="fac-tab5" class="irwin-tab-content-panel" style="box-shadow: none; border: none; padding: 0;">
+        <h3 style="margin-bottom: 12px; border:none;">Research Guidance</h3>
+        <p style="color: #444; line-height: 1.6;">Guided over 14 Ph.D. scholars and 40 Master's dissertations over the past 15 years.</p>
+      </div>
+
+      <div id="fac-tab6" class="irwin-tab-content-panel" style="box-shadow: none; border: none; padding: 0;">
+        <h3 style="margin-bottom: 12px; border:none;">Research Papers</h3>
+        <ul class="irwin-list-styled" style="line-height:1.7;">
+          <li><em>"Bioactive markers in Indigenous Foods"</em> - Journal of Food Science, 2023</li>
+          <li><em>"Efficacy of Iron Fortification"</em> - Clinical Nutrition, 2021</li>
+        </ul>
+      </div>
+
+      <div id="fac-tab7" class="irwin-tab-content-panel" style="box-shadow: none; border: none; padding: 0;">
+        <h3 style="margin-bottom: 12px; border:none;">Research Projects & Consultancy</h3>
+        <p>Currently co-investigator on a WHO-sponsored project assessing adolescent dietary health markers in Northern India.</p>
+      </div>
+      
+    </div> <!-- end margin padder -->
+  </div>
+
+
+  <script>
+    function openHTab(tabId) {
+      document.querySelectorAll('.irwin-tab-content-panel:not(.irwin-vertical-content *):not(.irwin-vertical-content-nested *)').forEach(p => p.classList.remove('active'));
+      const buttons = document.querySelector('.irwin-tabs-horizontal').querySelectorAll('.irwin-tab-item');
+      buttons.forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    function openVTab(tabId) {
+      const layoutBlock = event.currentTarget.closest('.irwin-vertical-layout');
+      layoutBlock.querySelectorAll('.irwin-tab-content-panel').forEach(p => p.classList.remove('active'));
+      layoutBlock.querySelectorAll('.irwin-v-tab-item').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+    
+    function openVTabNested(tabId) {
+      const layoutBlock = event.currentTarget.closest('.irwin-vertical-layout');
+      layoutBlock.querySelectorAll('.irwin-tab-content-panel').forEach(p => p.classList.remove('active'));
+      layoutBlock.querySelectorAll('.irwin-v-tab-item').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    function toggleAccordion(btn) {
+      const parent = btn.closest('.irwin-accordion');
+      parent.classList.toggle('expanded');
+    }
+  </script>
+  </div> <!-- end CMS white background wrapper -->
+
+  <!-- Fake Footer -->
+  <footer style="background: var(--brand-maroon, #741C02); padding: 40px 5%; color: rgba(255,255,255,0.7); font-size: 14px; text-align: center;">
+     <p>© 2026 Lady Irwin College. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,424 @@
+body {
+      background-color: var(--bg-inner, #f8f9fa);
+      padding: 40px;
+      font-family: var(--font-main, sans-serif);
+      color: #333;
+    }
+    
+    .section-divider {
+      margin: 80px 0;
+      border-top: 2px dashed #ddd;
+    }
+
+    .section-title {
+      font-family: var(--font-display, serif);
+      font-size: 24px;
+      color: var(--brand-maroon, #741C02);
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* 
+      ====================================
+      1. HORIZONTAL TABS (.irwin-tabs-horizontal)
+      ====================================
+    */
+    .irwin-tabs-horizontal {
+      display: flex;
+      gap: 4px;
+      border-bottom: 3px solid var(--brand-maroon, #741C02);
+      padding-bottom: 0px;
+      margin-bottom: 8px;
+      overflow-x: auto;
+    }
+    
+    .irwin-tab-item {
+      padding: 10px 24px; /* Tightened from 14px 28px */
+      font-family: var(--font-main, sans-serif);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--brand-maroon, #741C02);
+      background: rgba(116, 28, 2, 0.05); /* Faint maroon wash */
+      border: 1px solid rgba(116, 28, 2, 0.1);
+      border-top: 4px solid transparent; /* Reserves space to prevent height jumping */
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    
+    .irwin-tab-item:hover {
+      background: rgba(116, 28, 2, 0.15);
+    }
+    
+    .irwin-tab-item.active {
+      color: var(--brand-white, #fff);
+      background: var(--brand-maroon, #741C02);
+      border-color: var(--brand-maroon, #741C02);
+      border-top: 4px solid var(--brand-alt, #DF672B);
+    }
+
+    .irwin-tab-content-panel {
+      display: none;
+      padding: 32px 40px;
+      background: #fff;
+      border: 1px solid rgba(116, 28, 2, 0.1);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      animation: fadeIn 0.3s ease;
+      line-height: 1.6;
+    }
+    
+    .irwin-tab-content-panel.active {
+      display: block;
+    }
+
+    /* Automatically elevate the typography of panel headings */
+    .irwin-tab-content-panel h3 {
+      font-family: var(--font-display, serif);
+      font-size: 22px;
+      color: var(--brand-maroon, #741C02);
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(116, 28, 2, 0.1);
+      padding-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    /* 
+      ====================================
+      8. FACULTY CARDS (.irwin-faculty-grid)
+      ====================================
+    */
+    .irwin-faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    
+    .irwin-faculty-card {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid rgba(116, 28, 2, 0.1);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+    
+    .irwin-faculty-card:hover {
+      box-shadow: 0 6px 20px rgba(116, 28, 2, 0.08);
+      border-color: rgba(116, 28, 2, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .irwin-faculty-photo {
+      width: 70px;
+      height: 70px;
+      min-width: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 16px;
+      background: rgba(116, 28, 2, 0.05);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px rgba(116, 28, 2, 0.1);
+    }
+    
+    .irwin-faculty-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .irwin-faculty-name {
+      font-family: var(--font-main, sans-serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--brand-maroon, #741C02);
+      margin-bottom: 2px;
+      line-height: 1.2;
+    }
+    
+    .irwin-faculty-designation {
+      font-family: var(--font-main, sans-serif);
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    
+    .irwin-faculty-link {
+      font-family: var(--font-main, sans-serif);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand-alt, #DF672B);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .irwin-faculty-link:hover {
+      color: var(--brand-maroon, #741C02);
+      text-decoration: underline;
+    }
+
+    /* 
+      ====================================
+      2. VERTICAL TABS (.irwin-tabs-vertical-layout)
+      ====================================
+    */
+    .irwin-vertical-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    
+    @media (max-width: 768px) {
+      .irwin-vertical-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .irwin-tabs-vertical {
+      display: flex;
+      flex-direction: column;
+      background: var(--brand-maroon, #741C02); /* Heavy color grounding */
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(116, 28, 2, 0.15);
+    }
+    
+    .irwin-v-tab-item {
+      padding: 16px 20px;
+      font-family: var(--font-main, sans-serif);
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      background: transparent;
+      border: none;
+      border-left: 4px solid transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .irwin-v-tab-item:last-child {
+      border-bottom: none;
+    }
+    
+    .irwin-v-tab-item:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    
+    .irwin-v-tab-item.active {
+      background-color: #fff;
+      color: var(--brand-maroon, #741C02);
+      border-left: 4px solid var(--brand-alt, #DF672B);
+      font-weight: 600;
+    }
+
+    .irwin-v-tab-item.active::after {
+      content: "›"; 
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    /* 
+      ====================================
+      3. CLEAN MODERN TABLE (.irwin-data-table)
+      ====================================
+    */
+    .irwin-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #eaeaea;
+      margin-bottom: 24px;
+    }
+
+    .irwin-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-main, sans-serif);
+      text-align: left;
+    }
+    
+    .irwin-data-table th, 
+    .irwin-data-table td {
+      padding: 10px 16px;
+      line-height: 1.5;
+    }
+
+    .irwin-data-table th:first-child,
+    .irwin-data-table td:first-child {
+      text-align: right;
+      padding-left: 12px;
+      padding-right: 16px;
+      width: 65px; 
+      min-width: 65px; 
+      white-space: nowrap;
+    }
+    
+    .irwin-data-table th {
+      background-color: rgba(116, 28, 2, 0.05); /* Faint maroon */
+      color: var(--brand-maroon, #741C02);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid rgba(116, 28, 2, 0.2);
+    }
+    
+    .irwin-data-table tr {
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.2s ease;
+    }
+    
+    .irwin-data-table tr:last-child {
+      border-bottom: none; 
+    }
+    
+    .irwin-data-table tbody tr:nth-child(even) {
+      background-color: rgba(0,0,0,0.015);
+    }
+    
+    .irwin-data-table tbody tr:hover {
+      background-color: rgba(116, 28, 2, 0.02);
+    }
+    
+    .irwin-data-table td {
+      font-size: 15px;
+      color: #444;
+    }
+
+    /* 
+      ====================================
+      4. ACCORDIONS (.irwin-accordion)
+      ====================================
+    */
+    .irwin-accordion-container {
+      max-width: 900px;
+    }
+
+    .irwin-accordion {
+      margin-bottom: 16px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(116, 28, 2, 0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .irwin-accordion-header {
+      width: 100%;
+      text-align: left;
+      padding: 18px 24px;
+      background: var(--brand-maroon, #741C02);
+      color: #fff;
+      font-family: var(--font-display, serif);
+      font-size: 1.125rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s ease;
+    }
+
+    .irwin-accordion-header:hover {
+      background: var(--brand-alt, #DF672B); /* Orange pop on hover */
+    }
+
+    .irwin-accordion-icon {
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .irwin-accordion.expanded .irwin-accordion-icon {
+      transform: rotate(45deg); /* Turns + into x */
+    }
+
+    .irwin-accordion-body {
+      display: none;
+      padding: 24px;
+      background: #fff;
+      border-top: 1px solid rgba(116, 28, 2, 0.1);
+    }
+
+    .irwin-accordion.expanded .irwin-accordion-body {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 
+      ====================================
+      5. BRANDED LISTS (.irwin-list-styled)
+      ====================================
+    */
+    .irwin-list-styled {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 16px;
+    }
+    
+    .irwin-list-styled li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 10px;
+      color: #444;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    
+    .irwin-list-styled li::before {
+      content: ""; 
+      position: absolute;
+      left: 0;
+      top: 4px; 
+      width: 14px;
+      height: 14px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23741C02' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    /* 
+      ====================================
+      6. BRANDED LINKS (.irwin-link)
+      ====================================
+    */
+    .irwin-link {
+      color: var(--brand-alt, #DF672B);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(223, 103, 43, 0.4); /* Faint visual anchor by default */
+      transition: all 0.2s ease;
+    }
+    
+    .irwin-link:hover {
+      color: var(--brand-maroon, #741C02);
+      text-decoration-color: var(--brand-maroon, #741C02);
+    }

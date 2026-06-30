@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Affiliations - Lady Irwin College</title>
+  <link rel="stylesheet" href="./globalcss.css">
+  <style>
+    /* Specific CSS for Affiliations Page */
+    body {
+      background-color: var(--bg-inner);
+      min-height: 100vh;
+    }
+
+    .page-header {
+      background: var(--brand-maroon);
+      padding: 60px 5%;
+      text-align: center;
+      color: var(--brand-white);
+    }
+
+    .page-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .page-header p {
+      font-family: var(--font-main);
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .section {
+      padding: 64px 5%;
+      background-color: transparent;
+    }
+
+    .irwin-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1152px;
+      margin: 0 auto;
+    }
+
+    .irwin-card {
+      background: var(--brand-white);
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .irwin-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      border-color: rgba(223, 103, 43, 0.3);
+    }
+
+    .irwin-card-accent {
+      height: 6px;
+      background: var(--brand-alt);
+      transition: background 0.3s ease;
+    }
+
+    .irwin-card:hover .irwin-card-accent {
+      background: var(--brand-maroon);
+    }
+
+    .irwin-card-body {
+      padding: 24px;
+    }
+
+    .irwin-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .irwin-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(116, 28, 2, 0.06);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+      color: var(--brand-maroon);
+      font-family: var(--font-main);
+    }
+
+    .irwin-card-badge svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .irwin-card-main {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Logo container instead of icon */
+    .irwin-card-logo-wrapper {
+      flex-shrink: 0;
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #eaeaea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .irwin-card:hover .irwin-card-logo-wrapper {
+      transform: scale(1.05);
+      border-color: var(--brand-alt);
+    }
+
+    .irwin-card-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .irwin-card-fallback-text {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--brand-maroon);
+    }
+
+    .irwin-card-title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: color 0.2s;
+      color: rgba(0, 0, 0, 0.88);
+      margin-bottom: 4px;
+    }
+
+    .irwin-card:hover .irwin-card-title {
+      color: var(--brand-alt);
+    }
+
+    .irwin-card-subtitle {
+      font-size: 0.8125rem;
+      color: #666;
+      font-family: var(--font-main);
+      margin-bottom: 0 !important;
+    }
+
+    .irwin-card-footer {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .irwin-card-type {
+      font-size: 0.75rem;
+      color: #666;
+      font-family: var(--font-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .irwin-card-type svg {
+      width: 14px;
+      height: 14px;
+      color: #999;
+    }
+
+    .irwin-card-action-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--brand-alt);
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      font-family: var(--font-main);
+    }
+
+    .irwin-card-action-hint svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .irwin-card:hover .irwin-card-action-hint {
+      opacity: 1;
+      transform: translateX(-4px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header Area -->
+  <header class="page-header">
+    <h1>College Affiliations</h1>
+    <p>View and download official affiliation letters and certificates from recognised governing bodies and
+      universities.</p>
+  </header>
+
+  <!-- Content Section -->
+  <section class="section">
+    <div class="irwin-card-grid">
+
+      <!-- Card: UGC Affiliation -->
+      <a href="https://preproladyirwin.whitecodetech.com/wp-content/uploads/2025/10/12-F-B.pdf" target="_blank"
+        rel="noopener noreferrer" class="irwin-card">
+        <div class="irwin-card-accent"></div>
+        <div class="irwin-card-body">
+          <div class="irwin-card-meta">
+            <span class="irwin-card-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg> Active
+            </span>
+          </div>
+          <div class="irwin-card-main">
+            <div class="irwin-card-logo-wrapper">
+              <!-- When you have the actual logo, replace the span below with:
+                   <img src="your-ugc-logo.png" class="irwin-card-logo" alt="UGC Logo" /> -->
+              <span class="irwin-card-fallback-text">UGC</span>
+            </div>
+            <div>
+              <h3 class="irwin-card-title">UGC Affiliation</h3>
+              <p class="irwin-card-subtitle">University Grants Commission</p>
+            </div>
+          </div>
+          <div class="irwin-card-footer">
+            <span class="irwin-card-type">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg> Official Document
+            </span>
+            <span class="irwin-card-action-hint">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg> Open PDF
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card: DU Affiliation 2024 -->
+      <a href="https://preproladyirwin.whitecodetech.com/wp-content/uploads/2025/01/University-Affiliation-2024.pdf"
+        target="_blank" rel="noopener noreferrer" class="irwin-card">
+        <div class="irwin-card-accent"></div>
+        <div class="irwin-card-body">
+          <div class="irwin-card-meta">
+            <span class="irwin-card-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg> 2024
+            </span>
+          </div>
+          <div class="irwin-card-main">
+            <div class="irwin-card-logo-wrapper">
+              <span class="irwin-card-fallback-text">DU</span>
+            </div>
+            <div>
+              <h3 class="irwin-card-title">University of Delhi Affiliation 2024</h3>
+              <p class="irwin-card-subtitle">Delhi University</p>
+            </div>
+          </div>
+          <div class="irwin-card-footer">
+            <span class="irwin-card-type">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg> Official Document
+            </span>
+            <span class="irwin-card-action-hint">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg> Open PDF
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card: DU Affiliation 2017 -->
+      <a href="https://preproladyirwin.whitecodetech.com/wp-content/uploads/2022/09/University-of-Delhi-Affiliation-2017.pdf"
+        target="_blank" rel="noopener noreferrer" class="irwin-card">
+        <div class="irwin-card-accent"></div>
+        <div class="irwin-card-body">
+          <div class="irwin-card-meta">
+            <span class="irwin-card-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg> 2017
+            </span>
+          </div>
+          <div class="irwin-card-main">
+            <div class="irwin-card-logo-wrapper">
+              <span class="irwin-card-fallback-text">DU</span>
+            </div>
+            <div>
+              <h3 class="irwin-card-title">University of Delhi Affiliation 2017</h3>
+              <p class="irwin-card-subtitle">Delhi University</p>
+            </div>
+          </div>
+          <div class="irwin-card-footer">
+            <span class="irwin-card-type">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg> Official Document
+            </span>
+            <span class="irwin-card-action-hint">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg> Open PDF
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card: NCTE -->
+      <a href="https://preproladyirwin.whitecodetech.com/wp-content/uploads/2022/09/NCTE.pdf" target="_blank"
+        rel="noopener noreferrer" class="irwin-card">
+        <div class="irwin-card-accent"></div>
+        <div class="irwin-card-body">
+          <div class="irwin-card-meta">
+            <span class="irwin-card-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg> Active
+            </span>
+          </div>
+          <div class="irwin-card-main">
+            <div class="irwin-card-logo-wrapper">
+              <span class="irwin-card-fallback-text">NCTE</span>
+            </div>
+            <div>
+              <h3 class="irwin-card-title">NCTE</h3>
+              <p class="irwin-card-subtitle">National Council for Teacher Education</p>
+            </div>
+          </div>
+          <div class="irwin-card-footer">
+            <span class="irwin-card-type">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg> Official Document
+            </span>
+            <span class="irwin-card-action-hint">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg> Open PDF
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card: Rehabilitation Council of India -->
+      <a href="https://preproladyirwin.whitecodetech.com/wp-content/uploads/2022/09/Rehabilitation-Council-of-India.pdf"
+        target="_blank" rel="noopener noreferrer" class="irwin-card">
+        <div class="irwin-card-accent"></div>
+        <div class="irwin-card-body">
+          <div class="irwin-card-meta">
+            <span class="irwin-card-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg> Active
+            </span>
+          </div>
+          <div class="irwin-card-main">
+            <div class="irwin-card-logo-wrapper">
+              <span class="irwin-card-fallback-text">RCI</span>
+            </div>
+            <div>
+              <h3 class="irwin-card-title">Rehabilitation Council of India</h3>
+              <p class="irwin-card-subtitle">RCI Affiliation</p>
+            </div>
+          </div>
+          <div class="irwin-card-footer">
+            <span class="irwin-card-type">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg> Official Document
+            </span>
+            <span class="irwin-card-action-hint">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg> Open PDF
+            </span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</body>
+
+</html>

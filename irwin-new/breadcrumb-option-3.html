@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Breadcrumb Option 3: The Optimum Hybrid</title>
+  <link rel="stylesheet" href="./globalcss.css">
+<style>
+    body {
+      margin: 0;
+      font-family: var(--font-body, sans-serif);
+      background-color: var(--brand-cream, #f9f5f0);
+    }
+    
+    /* Mock Top Header (Dark Maroon) */
+    .mock-top-header {
+      background-color: var(--brand-maroon, #8a1538);
+      color: white;
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mock-logo-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .mock-logo {
+      width: 65px;
+      height: 65px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      text-align: center;
+    }
+    .mock-title h2 {
+      margin: 0 0 4px 0;
+      font-family: var(--font-display, serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .mock-subtitle {
+      margin: 0;
+      font-size: 0.8rem;
+      color: #ffd0d9;
+    }
+
+    /* THE OPTIMUM HERO BANNER */
+    .hero-banner {
+      /* Soothing, low-contrast rusty maroon overlay (replicating Faculty Details style perfectly) */
+      background: linear-gradient(rgba(140, 45, 30, 0.8), rgba(120, 25, 20, 0.9)), url('https://preproladyirwin.whitecodetech.com/desk-bg.png') center/cover;
+      padding: 110px 5% 60px 5%; /* Top padding pushes content below the main menu */
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; /* Centered like the programs page! */
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    /* Mock Main Menu Overlay */
+    .mock-main-menu {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+      padding: 15px 5%;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-sizing: border-box;
+      justify-content: center; /* Menu centered */
+    }
+
+    .hero-banner h1 {
+      color: white;
+      font-family: var(--font-display, serif);
+      font-size: 3.5rem;
+      margin: 0 0 15px 0;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .hero-banner p.hero-summary {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 0 25px 0;
+      line-height: 1.5;
+    }
+
+    /* Option 1: Glassmorphism Pill (Moved to center and polished) */
+    .premium-breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 8px 24px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 25px; /* Pushed above title */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: var(--font-body, sans-serif);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .premium-breadcrumb a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .premium-breadcrumb a:hover {
+      color: var(--brand-alt, #de6631);
+    }
+
+    .premium-breadcrumb .bc-separator {
+      width: 14px;
+      height: 14px;
+      stroke: rgba(255, 255, 255, 0.5);
+    }
+
+    .premium-breadcrumb .bc-current {
+      color: var(--brand-alt, #de6631);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mock Top Header -->
+  <header class="mock-top-header">
+    <div class="mock-logo-area">
+      <div class="mock-logo">LOGO</div>
+      <div class="mock-title">
+        <h2>Lady Irwin College, Delhi</h2>
+        <p class="mock-subtitle">University of Delhi | NAAC Accreditation A+</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- The Optimum Hero Banner -->
+  <div class="hero-banner">
+
+    <!-- Mock Main Menu -->
+    <div class="mock-main-menu">
+      <span>Home</span>
+      <span>About ▾</span>
+      <span>Departments ▾</span>
+      <span>Programmes</span>
+      <span>Admissions ▾</span>
+      <span>Facilities ▾</span>
+    </div>
+
+    <!-- The Glass Pill Breadcrumb -->
+    <nav class="premium-breadcrumb" aria-label="breadcrumb">
+      <a href="#">Home</a>
+      <svg class="bc-separator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      <a href="#">About</a>
+      <svg class="bc-separator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      <a href="#">Organization</a>
+      <svg class="bc-separator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      <span class="bc-current">Reports</span>
+    </nav>
+
+    <!-- Page Title & Summary (Like Programs Page) -->
+    <h1>Reports & Publications</h1>
+    <p class="hero-summary">Access and review all annual reports, financial disclosures, and official publications released by Lady Irwin College to maintain transparency and excellence.</p>
+    
+  </div>
+
+  <!-- Regular Content Below -->
+  <section class="stats-bar" style="margin-top: -30px; position: relative; z-index: 10;">
+    <div class="stat-item">
+      <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <div><p class="stat-value">10+</p><p class="stat-label">Reports Published</p></div>
+    </div>
+    <!-- more stats omitted for brevity -->
+  </section>
+
+  <p style="text-align: center; margin-top: 50px;"><em>The rest of the Reports Dashboard grid follows here...</em></p>
+
+</body>
+</html>
+

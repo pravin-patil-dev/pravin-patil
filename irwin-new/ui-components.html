@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generic UI Components - Lady Irwin</title>
+  <link rel="stylesheet" href="./globalcss.css">
+</head>
+<body>
+
+  <!-- ===============================
+       1. HORIZONTAL TABS
+       =============================== -->
+  <div class="section-title">1. Horizontal Tabs</div>
+  
+  <div class="irwin-tabs-horizontal">
+    <button class="irwin-tab-item active" onclick="openHTab('h-tab1')">Overview</button>
+    <button class="irwin-tab-item" onclick="openHTab('h-tab2')">Members List</button>
+    <button class="irwin-tab-item" onclick="openHTab('h-tab3')">Meeting Minutes</button>
+    <button class="irwin-tab-item" onclick="openHTab('h-tab4')">Resolutions</button>
+  </div>
+  
+  <div id="h-tab1" class="irwin-tab-content-panel active">
+    <h3>Overview of the Governing Body</h3>
+    <p>The Governing Body is the apex administrative and executive entity of Lady Irwin College. Established under the ordinances of the University of Delhi, it holds the essential responsibility of charting the strategic vision, managing financial governance, and ensuring academic excellence within the institution.</p>
+    
+    <h4 style="color: var(--brand-maroon); font-size: 16px; margin-top: 24px;">Core Responsibilities:</h4>
+    <ul class="irwin-list-styled">
+      <li>Charting the long-term strategic vision for the college legacy.</li>
+      <li>Meticulously managing financial and structural governance.</li>
+      <li>Ensuring that academic excellence scales efficiently and seamlessly.</li>
+      <li>Reviewing and ratifying institutional frameworks and major developments.</li>
+    </ul>
+    
+    <p style="margin-top: 24px; font-size: 15px; color: #444; line-height: 1.6;">For more deep historic archives, please refer to the <a href="#" class="irwin-link">Official Charter Documentation</a> or consult the newly published <a href="#" class="irwin-link">2024 Policy Directives</a> directly on the site.</p>
+  </div>
+  
+  <div id="h-tab2" class="irwin-tab-content-panel">
+    <h3>Active Members Database</h3>
+    <div class="irwin-table-wrapper">
+      <table class="irwin-data-table">
+        <thead>
+          <tr>
+            <th width="10%">Sr. No</th>
+            <th width="40%">Name</th>
+            <th width="50%">Designation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Prof. Sunaina Kanojia</strong></td><td>Chairperson</td></tr>
+          <tr><td>2</td><td><strong>Prof. Ajit Mahapatro</strong></td><td>Treasurer</td></tr>
+          <tr><td>3</td><td><strong>Prof. Archna Kumar</strong></td><td>Director (Officiating) & Member Secretary</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="h-tab3" class="irwin-tab-content-panel">
+    <h3>Official Meeting Minutes</h3>
+    <ul style="line-height: 2; color: #444; font-size: 15px;">
+      <li><a href="#" style="color: var(--brand-alt); font-weight: 500;">Minutes of the Meeting held on 15th January 2024 (PDF)</a></li>
+      <li><a href="#" style="color: var(--brand-alt); font-weight: 500;">Minutes of the Meeting held on 22nd August 2023 (PDF)</a></li>
+    </ul>
+  </div>
+
+  <div id="h-tab4" class="irwin-tab-content-panel">
+    <h3>Passed Resolutions</h3>
+    <p>No recent overarching resolutions to display for this academic session.</p>
+  </div>
+
+
+  <div class="section-divider"></div>
+
+  <!-- ===============================
+       2. VERTICAL TABS
+       =============================== -->
+  <div class="section-title">2. Vertical Tabs</div>
+
+  <div class="irwin-vertical-layout">
+    <div class="irwin-tabs-vertical">
+      <button class="irwin-v-tab-item active" onclick="openVTab('v-tab1')">Governing Body 2025-26</button>
+      <button class="irwin-v-tab-item" onclick="openVTab('v-tab2')">Members (Feb 2025)</button>
+      <button class="irwin-v-tab-item" onclick="openVTab('v-tab3')">Governing Body 2024-25</button>
+      <button class="irwin-v-tab-item" onclick="openVTab('v-tab4')">Governing Body 2023-24</button>
+    </div>
+    
+    <div class="irwin-vertical-content">
+      <div id="v-tab1" class="irwin-tab-content-panel active">
+        <h3>2025-26 Governing Body Pane</h3>
+        <p>Current active administrative members for the core academic year.</p>
+        <div class="irwin-table-wrapper">
+          <table class="irwin-data-table">
+            <thead>
+              <tr><th width="10%">Sr. No</th><th width="40%">Name</th><th width="50%">Designation</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td><strong>Prof. Sunaina Kanojia</strong></td><td>Chairperson</td></tr>
+              <tr><td>2</td><td><strong>Prof. Ajit Mahapatro</strong></td><td>Treasurer</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div id="v-tab2" class="irwin-tab-content-panel">
+        <h3>February 2025 Onward</h3>
+        <p>Mid-term structural updates and active roles.</p>
+        <div class="irwin-table-wrapper">
+          <table class="irwin-data-table">
+            <thead>
+              <tr><th width="10%">Sr. No</th><th width="40%">Name</th><th width="50%">Designation</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td><strong>Dr. Dimple Rangila</strong></td><td>Teachers' Representative</td></tr>
+              <tr><td>2</td><td><strong>Mr. Madan</strong></td><td>Non-Teaching Representative</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div id="v-tab3" class="irwin-tab-content-panel">
+        <h3>2024-25 Archive</h3>
+        <p>Previous academic year leadership.</p>
+        <div class="irwin-table-wrapper">
+          <table class="irwin-data-table">
+            <thead>
+              <tr><th width="10%">Sr. No</th><th width="40%">Name</th><th width="50%">Designation</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td><strong>Prof. Mithun Kumar</strong></td><td>Treasurer (DU Rep.)</td></tr>
+              <tr><td>2</td><td><strong>Prof. Manisha Choudhary</strong></td><td>Member (DU Rep.)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div id="v-tab4" class="irwin-tab-content-panel">
+        <h3>2023-24 Archive</h3>
+        <p>Historical governing records.</p>
+        <div class="irwin-table-wrapper">
+          <table class="irwin-data-table">
+            <thead>
+              <tr><th width="10%">Sr. No</th><th width="40%">Name</th><th width="50%">Designation</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td><strong>Historical Records</strong></td><td>Archived</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section-divider"></div>
+
+  <!-- ===============================
+       3. DEFAULT ACCORDIONS
+       =============================== -->
+  <div class="section-title">3. Standalone Accordion</div>
+
+  <div class="irwin-accordion-container">
+    
+    <div class="irwin-accordion expanded">
+      <button class="irwin-accordion-header" onclick="toggleAccordion(this)">
+        Governing Body Members (2025-26)
+        <span class="irwin-accordion-icon">+</span>
+      </button>
+      <div class="irwin-accordion-body">
+        <p>This is a standalone accordion block. It looks exceptionally clean on its own.</p>
+      </div>
+    </div>
+
+    <div class="irwin-accordion">
+      <button class="irwin-accordion-header" onclick="toggleAccordion(this)">
+        Governing Body Members (February 2025 onward)
+        <span class="irwin-accordion-icon">+</span>
+      </button>
+      <div class="irwin-accordion-body">
+        <p>You can put generic tables or anything else right inside here.</p>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="section-divider"></div>
+
+  <!-- ===============================
+       4. TABS WITH ACCORDIONS (NESTED)
+       =============================== -->
+  <div class="section-title">4. Tabs with Nested Accordions</div>
+
+  <div class="irwin-vertical-layout">
+    <div class="irwin-tabs-vertical">
+      <button class="irwin-v-tab-item active" onclick="openVTabNested('vn-tab1')">Minutes of Meetings</button>
+      <button class="irwin-v-tab-item" onclick="openVTabNested('vn-tab2')">Official Notices</button>
+    </div>
+    
+    <div class="irwin-vertical-content-nested">
+      <div id="vn-tab1" class="irwin-tab-content-panel active">
+        <h3>Minutes of Meetings Repository</h3>
+        <p>Here we see the massive UI power of placing `irwin-accordion` entirely inside an `irwin-tabs-vertical` pane.</p>
+        
+        <div class="irwin-accordion">
+          <button class="irwin-accordion-header" onclick="toggleAccordion(this)">
+            Meeting Records 2025
+            <span class="irwin-accordion-icon">+</span>
+          </button>
+          <div class="irwin-accordion-body">
+            <ul style="line-height: 2;">
+              <li><a href="#">Jan 15th Resolutions PDF</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="irwin-accordion expanded">
+          <button class="irwin-accordion-header" onclick="toggleAccordion(this)">
+            Meeting Records 2024
+            <span class="irwin-accordion-icon">+</span>
+          </button>
+          <div class="irwin-accordion-body">
+             <ul style="line-height: 2;">
+              <li><a href="#">August 22nd Transcripts PDF</a></li>
+              <li><a href="#">April 8th Policy Updates PDF</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div id="vn-tab2" class="irwin-tab-content-panel">
+         <h3>Official Notices pane</h3>
+         <p>Empty</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section-divider"></div>
+
+  <!-- ===============================
+       5. DEPARTMENT PAGE COMPONENT
+       =============================== -->
+  <div class="section-title">5. Department Layout</div>
+  <p style="margin-bottom: 24px; color: #555;">Real-world example mapping the "Food & Nutrition" department perfectly to the vertical tab component.</p>
+
+  <div class="irwin-vertical-layout">
+    <div class="irwin-tabs-vertical">
+      <button class="irwin-v-tab-item active" onclick="openVTab('dept-tab1')">Overview</button>
+      <button class="irwin-v-tab-item" onclick="openVTab('dept-tab2')">Syllabus</button>
+      <button class="irwin-v-tab-item" onclick="openVTab('dept-tab3')">Faculty</button>
+      <button class="irwin-v-tab-item" onclick="openVTab('dept-tab4')">Research</button>
+    </div>
+    
+    <div class="irwin-vertical-content">
+      
+      <div id="dept-tab1" class="irwin-tab-content-panel active">
+        <h3>Food, Nutrition & Food Technology</h3>
+        <p style="margin-top: 12px; color: #444; line-height: 1.6;">The Department of Food and Nutrition at Lady Irwin College has been a premier hub of research and academic excellence since its inception. We emphasize holistic understanding of food science, human nutrition, and public health.</p>
+        
+        <h4 style="color: var(--brand-maroon); font-size: 16px; margin-top: 24px;">Key Objectives:</h4>
+        <ul class="irwin-list-styled">
+          <li>To impart scientific knowledge regarding food science and clinical nutrition.</li>
+          <li>To train students in advanced laboratory techniques and food technology.</li>
+          <li>To foster community-oriented research in public health nutrition.</li>
+        </ul>
+      </div>
+
+      <div id="dept-tab2" class="irwin-tab-content-panel">
+        <h3>Course Syllabi</h3>
+        <p style="margin-top: 12px; margin-bottom: 20px; color: #444;">Download the latest curriculum structures for undergraduate and postgraduate courses.</p>
+        
+        <div class="irwin-accordion">
+          <button class="irwin-accordion-header" onclick="toggleAccordion(this)">B.Sc. (Hons.) Food Technology<span class="irwin-accordion-icon">+</span></button>
+          <div class="irwin-accordion-body">
+            <ul class="irwin-list-styled">
+              <li><a href="#" class="irwin-link">Semester 1 & 2 Syllabus (PDF)</a></li>
+              <li><a href="#" class="irwin-link">Semester 3 & 4 Syllabus (PDF)</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="irwin-accordion">
+          <button class="irwin-accordion-header" onclick="toggleAccordion(this)">M.Sc. Food & Nutrition<span class="irwin-accordion-icon">+</span></button>
+          <div class="irwin-accordion-body">
+            <ul class="irwin-list-styled">
+              <li><a href="#" class="irwin-link">Master's Curriculum Guide (PDF)</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="dept-tab3" class="irwin-tab-content-panel">
+        <h3>Core Faculty Members</h3>
+        <div class="irwin-faculty-grid">
+          
+          <!-- Card 1 -->
+          <div class="irwin-faculty-card">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="irwin-faculty-photo" alt="Dr. Anjani Chadha">
+            <div class="irwin-faculty-info">
+              <div class="irwin-faculty-name">Dr. Anjani Chadha</div>
+              <div class="irwin-faculty-designation">Associate Professor & Head</div>
+              <a href="#" class="irwin-faculty-link">Profile Details ›</a>
+            </div>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="irwin-faculty-card">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" class="irwin-faculty-photo" alt="Dr. Puja Gupta">
+            <div class="irwin-faculty-info">
+              <div class="irwin-faculty-name">Dr. Puja Gupta</div>
+              <div class="irwin-faculty-designation">Associate Professor</div>
+              <a href="#" class="irwin-faculty-link">Profile Details ›</a>
+            </div>
+          </div>
+          
+          <!-- Card 3 -->
+          <div class="irwin-faculty-card">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="irwin-faculty-photo" alt="Dr. Dipesh Kumar">
+            <div class="irwin-faculty-info">
+              <div class="irwin-faculty-name">Dr. Dipesh Kumar</div>
+              <div class="irwin-faculty-designation">Assistant Professor</div>
+              <a href="#" class="irwin-faculty-link">Profile Details ›</a>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="irwin-faculty-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23bcaea7'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" class="irwin-faculty-photo" alt="Avatar Placeholder">
+            <div class="irwin-faculty-info">
+              <div class="irwin-faculty-name">Dr. Neha Bakshi</div>
+              <div class="irwin-faculty-designation">Assistant Professor</div>
+              <a href="#" class="irwin-faculty-link">Profile Details ›</a>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="irwin-faculty-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23bcaea7'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" class="irwin-faculty-photo" alt="Avatar Placeholder">
+            <div class="irwin-faculty-info">
+              <div class="irwin-faculty-name">Ms. Ritu Sharma</div>
+              <div class="irwin-faculty-designation">Guest Faculty</div>
+              <a href="#" class="irwin-faculty-link">Profile Details ›</a>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="irwin-faculty-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23bcaea7'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" class="irwin-faculty-photo" alt="Avatar Placeholder">
+            <div class="irwin-faculty-info">
+              <div class="irwin-faculty-name">Dr. Manisha Kohli</div>
+              <div class="irwin-faculty-designation">Professor</div>
+              <a href="#" class="irwin-faculty-link">Profile Details ›</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="dept-tab4" class="irwin-tab-content-panel">
+        <h3>Research Initiatives</h3>
+        <p style="margin-top: 12px; color: #444; line-height: 1.6;">The department holds a vibrant research grants portfolio funded by UGC, ICMR, and WHO. Current primary investigations are focusing on bioactive compounds in indigenous foods.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script>
+    function openHTab(tabId) {
+      document.querySelectorAll('.irwin-tab-content-panel:not(.irwin-vertical-content *):not(.irwin-vertical-content-nested *)').forEach(p => p.classList.remove('active'));
+      const buttons = document.querySelector('.irwin-tabs-horizontal').querySelectorAll('.irwin-tab-item');
+      buttons.forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    function openVTab(tabId) {
+      const layoutBlock = event.currentTarget.closest('.irwin-vertical-layout');
+      layoutBlock.querySelectorAll('.irwin-tab-content-panel').forEach(p => p.classList.remove('active'));
+      layoutBlock.querySelectorAll('.irwin-v-tab-item').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+    
+    function openVTabNested(tabId) {
+      const layoutBlock = event.currentTarget.closest('.irwin-vertical-layout');
+      layoutBlock.querySelectorAll('.irwin-tab-content-panel').forEach(p => p.classList.remove('active'));
+      layoutBlock.querySelectorAll('.irwin-v-tab-item').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    function toggleAccordion(btn) {
+      const parent = btn.closest('.irwin-accordion');
+      parent.classList.toggle('expanded');
+    }
+  </script>
+
+</body>
+</html>
+

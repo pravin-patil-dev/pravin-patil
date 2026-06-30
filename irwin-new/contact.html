@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Lady Irwin</title>
+  <link rel="stylesheet" href="./globalcss.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body style="margin: 0; padding: 0; background: #f0ece3;">
+
+  <!-- ==============================================
+       HEADER (FROM UI COMPONENTS / GLOBALS)
+       ============================================== -->
+  <header
+    style="background: var(--brand-maroon, #741C02); color: #fff; padding: 20px 5%; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center;">
+      <div
+        style="width: 60px; height: 60px; background: #fff; border-radius: 50%; margin-right: 20px; display: flex; align-items: center; justify-content: center; color: var(--brand-maroon); font-size: 10px; font-weight: bold; text-align: center;">
+        LOGO</div>
+      <div>
+        <h1 style="font-family: var(--font-display, serif); margin: 0; font-size: 24px; font-weight: 500;">Lady Irwin
+          College, Delhi</h1>
+        <p
+          style="font-family: var(--font-main, sans-serif); margin: 4px 0 0 0; font-size: 12px; color: rgba(255,255,255,0.8);">
+          University of Delhi | NAAC Accreditation A+</p>
+      </div>
+    </div>
+    <div style="font-size: 12px; font-weight: 600; letter-spacing: 1px;">TIME TABLE &nbsp;&nbsp; FEEDBACK &nbsp;&nbsp;
+      GALLERY</div>
+  </header>
+
+  <!-- Global Breadcrumb Banner Configuration -->
+  <div
+    style="background-image: linear-gradient(rgba(116, 28, 2, 0.85), rgba(116, 28, 2, 0.95)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'); background-repeat: no-repeat; background-position: center center; background-size: cover; padding: 40px 5%; color: #fff; border-bottom: 5px solid var(--brand-alt, #DF672B);">
+    <h1
+      style="font-family: var(--font-display, serif); font-size: 42px; margin: 0; font-weight: 600; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+      Contact Us</h1>
+    <p
+      style="font-family: var(--font-main, sans-serif); margin: 10px 0 0 0; font-size: 15px; color: rgba(255,255,255,0.9);">
+      Home > <span style="color: var(--brand-alt, #DF672B);">Contact</span></p>
+  </div>
+
+  <!-- The Actual CMS Content Area -->
+  <div class="section">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="irwin-split-grid">
+
+        <!-- LEFT SIDE: Info and Map -->
+        <div class="contact-info-panel">
+
+          <div class="contact-info-card">
+            <div class="contact-icon-wrapper">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div class="contact-text">
+              <h3>Visit Our Campus</h3>
+              <p>Lady Irwin College<br>Sikandra Road, New Delhi<br>Delhi 110001, India</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-icon-wrapper">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="contact-text">
+              <h3>Call Us</h3>
+              <p><strong>College Office:</strong> <a href="tel:+911123711222">+91-11-2371 1222</a></p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-icon-wrapper">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="contact-text">
+              <h3>Email Us</h3>
+              <p><strong>General Enquiry:</strong> <a href="mailto:director@lic.du.ac.in">director@lic.du.ac.in</a></p>
+            </div>
+          </div>
+
+          <div class="contact-map-card">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.138656686364!2d77.2312!3d28.6256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd2c18ba6df1%3A0x6fbcd9c85faad0a3!2sLady%20Irwin%20College!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+        </div>
+
+        <!-- RIGHT SIDE: Form -->
+        <div class="contact-form-panel">
+          <div class="form-header">
+            <h2>Send us a Message</h2>
+            <p>Have specific questions or feedback? Fill out the form below and our administrative team will reach out
+              to you promptly.</p>
+          </div>
+
+          <div class="contact-style2">
+            <div class="dynamic-contact-form-container">
+              <form>
+                <div class="dyn-field-group">
+                  <label for="name">Full Name <span class="text-red-700">*</span></label>
+                  <input type="text" id="name" class="form-input" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="dyn-field-group">
+                  <label for="email">Email Address <span class="text-red-700">*</span></label>
+                  <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                </div>
+
+                <div class="dyn-field-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" class="form-input" placeholder="Enter your phone number">
+                </div>
+
+                <div class="dyn-field-group">
+                  <label for="message">Message <span class="text-red-700">*</span></label>
+                  <textarea id="message" class="form-input" placeholder="How can we help?" required></textarea>
+                </div>
+
+                <div class="dynamic-contact-submit-wrapper">
+                  <button type="button" class="dynamic-contact-submit-btn">Send Message</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fake Footer -->
+  <footer
+    style="background: var(--brand-maroon, #741C02); padding: 40px 5%; color: rgba(255,255,255,0.7); font-size: 14px; text-align: center; margin-top: 60px;">
+    <p>© 2026 Lady Irwin College. All rights reserved.</p>
+  </footer>
+
+</body>
+
+</html>

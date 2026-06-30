@@ -1,0 +1,159 @@
+
+/* 
+  ==============================================================
+  12. DYNAMIC CONTACT FORM SHORTCODE OVERRIDES
+  ==============================================================
+*/
+
+/* Hide redundant titles from shortcode */
+body .container-form-contactUs .dynamic-contact-us-title,
+body .container-form-contactUs .dynamic-contact-form-title {
+    display: none !important;
+}
+
+/* Strip inner wrapper padding/margins/borders to seamlessly blend into our panel */
+body .container-form-contactUs .container,
+body .container-form-contactUs .dynamic-contact-us-wrapper,
+body .container-form-contactUs .dynamic-contact-form-container,
+body .container-form-contactUs .drop-msg,
+body .container-form-contactUs .dynamic-contact-us-form-col {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+body .container-form-contactUs .contact-top-row {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+}
+
+/* Strip Tailwind spacing classes that override ours */
+body .container-form-contactUs .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0 !important;
+}
+
+/* Match Irwin form field layout spacing */
+body .container-form-contactUs .dyn-field-group {
+    margin-bottom: 24px !important;
+    width: 100% !important;
+}
+
+/* Remove default dynamic wrappers borders and set relative positioning */
+body .container-form-contactUs .input-container,
+body .container-form-contactUs .textbox-container {
+    border: none !important;
+    background: transparent !important;
+    position: relative !important;
+}
+
+/* Base Input Styling (Floating labels scale internally, we just style the box) */
+body .container-form-contactUs input.form-input,
+body .container-form-contactUs textarea.form-input {
+    background-color: #f8f9fa !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    font-family: var(--font-main, sans-serif) !important;
+    font-size: 15px !important;
+    color: #333 !important;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+    transition: all 0.3s ease !important;
+    /* Override padding to make room for the floating label */
+    padding: 24px 16px 8px 16px !important;
+}
+
+body .container-form-contactUs input.form-input::placeholder,
+body .container-form-contactUs textarea.form-input::placeholder {
+    color: transparent !important;
+}
+
+/* Active Focus state -> brand colors */
+body .container-form-contactUs input.form-input:focus,
+body .container-form-contactUs textarea.form-input:focus {
+    background-color: #fff !important;
+    border-color: var(--brand-alt, #DF672B) !important;
+    box-shadow: 0 0 0 4px rgba(223, 103, 43, 0.1) !important;
+    outline: none !important;
+}
+
+/* Force Textarea Height */
+body .container-form-contactUs textarea.form-input {
+    min-height: 150px !important;
+    resize: vertical !important;
+}
+
+/* Label typography adjustments and floating logic */
+body .container-form-contactUs label {
+    font-family: var(--font-main, sans-serif) !important;
+    color: #666 !important;
+    font-weight: 600 !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    padding: 16px !important;
+    pointer-events: none !important;
+    transform-origin: 0 0 !important;
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out !important;
+    transform: scale(1) translateY(0) !important;
+    z-index: 10 !important;
+}
+
+body .container-form-contactUs input.form-input:focus ~ label,
+body .container-form-contactUs input.form-input:not(:placeholder-shown) ~ label,
+body .container-form-contactUs textarea.form-input:focus ~ label,
+body .container-form-contactUs textarea.form-input:not(:placeholder-shown) ~ label {
+    transform: scale(0.85) translateY(-6px) translateX(4px) !important;
+    color: var(--brand-alt, #DF672B) !important; 
+}
+
+body .container-form-contactUs label .text-red-700 {
+    color: var(--brand-maroon, #741C02) !important;
+}
+
+/* Submit Button -> Match irwin-btn-submit exactly */
+body .container-form-contactUs .dynamic-contact-submit-wrapper {
+    margin-top: 32px !important;
+}
+
+body .container-form-contactUs .dynamic-contact-submit-btn {
+    background-color: var(--brand-maroon, #741C02) !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 16px 32px !important;
+    font-family: var(--font-main, sans-serif) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    width: 100% !important;
+    height: auto !important; 
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    cursor: pointer !important;
+}
+
+body .container-form-contactUs .dynamic-contact-submit-btn:hover {
+    background-color: var(--brand-alt, #DF672B) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(223, 103, 43, 0.25) !important;
+}
+
+/* Pseudo-element to inject the Paper Plane Icon into the dynamic button */
+body .container-form-contactUs .dynamic-contact-submit-btn::after {
+    content: "\f1d8" !important;
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    margin-left: 10px !important;
+    transition: transform 0.3s ease !important;
+}
+
+body .container-form-contactUs .dynamic-contact-submit-btn:hover::after {
+    transform: translateX(4px) !important;
+}
